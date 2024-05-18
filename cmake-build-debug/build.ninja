@@ -56,6 +56,13 @@ build CMakeFiles/C_Calculator.dir/main.c.obj: C_COMPILER__C_Calculator_unscanned
   OBJECT_DIR = CMakeFiles\C_Calculator.dir
   OBJECT_FILE_DIR = CMakeFiles\C_Calculator.dir
 
+build CMakeFiles/C_Calculator.dir/appStructure.c.obj: C_COMPILER__C_Calculator_unscanned_Debug C$:/Users/domir/CLionProjects/C_Calculator/appStructure.c || cmake_object_order_depends_target_C_Calculator
+  DEP_FILE = CMakeFiles\C_Calculator.dir\appStructure.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/msys64/mingw64/bin/../include/gtk-4.0 -IC:/msys64/mingw64/bin/../include/pango-1.0 -IC:/msys64/mingw64/bin/../include/fribidi -IC:/msys64/mingw64/bin/../include -IC:/msys64/mingw64/bin/../include/harfbuzz -IC:/msys64/mingw64/bin/../include/gdk-pixbuf-2.0 -IC:/msys64/mingw64/bin/../include/webp -IC:/msys64/mingw64/bin/../include/cairo -IC:/msys64/mingw64/bin/../include/freetype2 -IC:/msys64/mingw64/bin/../include/libpng16 -IC:/msys64/mingw64/bin/../include/pixman-1 -IC:/msys64/mingw64/bin/../include/graphene-1.0 -IC:/msys64/mingw64/bin/../lib/graphene-1.0/include -IC:/msys64/mingw64/bin/../include/glib-2.0 -IC:/msys64/mingw64/bin/../lib/glib-2.0/include
+  OBJECT_DIR = CMakeFiles\C_Calculator.dir
+  OBJECT_FILE_DIR = CMakeFiles\C_Calculator.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target C_Calculator
@@ -64,7 +71,7 @@ build CMakeFiles/C_Calculator.dir/main.c.obj: C_COMPILER__C_Calculator_unscanned
 #############################################
 # Link the executable C_Calculator.exe
 
-build C_Calculator.exe: C_EXECUTABLE_LINKER__C_Calculator_Debug CMakeFiles/C_Calculator.dir/main.c.obj
+build C_Calculator.exe: C_EXECUTABLE_LINKER__C_Calculator_Debug CMakeFiles/C_Calculator.dir/main.c.obj CMakeFiles/C_Calculator.dir/appStructure.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lgtk-4  -lpangowin32-1.0  -lpangocairo-1.0  -lpango-1.0  -lharfbuzz  -lgdk_pixbuf-2.0  -lcairo-gobject  -lcairo  -lgraphene-1.0  -lgio-2.0  -lgobject-2.0  -lglib-2.0  -lintl  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/msys64/mingw64/bin/../lib
