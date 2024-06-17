@@ -2,18 +2,54 @@
 
 // Label widget as global variable
 GtkWidget *label;
+GtkWidget *prevLabel;
 
+// Keep track of button presses to not surpass digit max
 int buttonPress = 0;
-char digits[17];
+
+// Keep track of if this is the first time we reverse
+int firstTime = 1;
+
+// Displayed Digits on screen
+char currentDisplay[17];
+char previousDisplay[17];
+// Ints for calculations
+double currentNum;
+double prev;
+
+double reverseNum(double num)
+{
+    double rev_num = 0;
+
+    if (firstTime == 1) {
+        while (num > 0) {
+            rev_num = rev_num * 10.0 + fmod(num, 10.0);
+            num = floor(num / 10.0);
+        }
+        firstTime = 0;
+
+        return rev_num;
+    }
+
+    return currentNum;
+}
 
 void displayDigits(GtkWidget *widget, gpointer data)
 {
     if (buttonPress >= 16)
-        buttonPress = 17;
+    {
+        currentNum = reverseNum(currentNum);
+        firstTime = 0;
+        g_print("%.1lf\n",currentNum);
+        return;
+    }
 
-    const char *output = gtk_button_get_label(GTK_BUTTON(widget));
-    digits[buttonPress] = output[0];
-    gtk_label_set_text(GTK_LABEL(label), digits);
+    char const *currentPressed = gtk_button_get_label(GTK_BUTTON(widget));
+
+    currentDisplay[buttonPress] = currentPressed[0];
+    currentNum += pow(10, buttonPress) * atoi(currentPressed);
+
+    gtk_label_set_text(GTK_LABEL(label), currentDisplay);
     buttonPress++;
 }
 
@@ -54,7 +90,9 @@ void activate(GtkApplication *app, gpointer user_data)
     gtk_window_set_child(GTK_WINDOW(window), box);
 
     // Create numerical input display label
-    label = gtk_label_new("");
+    //prevLabel = gtk_label_new("");
+    label = gtk_label_new("0");
+    //gtk_box_append(GTK_BOX(box), prevLabel);
     gtk_box_append(GTK_BOX(box), label);
 
     // Create new grid and fill it with buttons 3x3 with an additional 0 button at the bottom
@@ -108,5 +146,23 @@ void activate(GtkApplication *app, gpointer user_data)
     gtk_grid_attach(GTK_GRID(grid), multiplication, 4, 3, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), division, 4, 4, 1, 1);
 
+    // Call correct function based on button click
+    //if(g_signal_connect(addition, "clicked", G_CALLBACK(displayDigits), NULL))
+    //{
+
+       // add(currentDisplay, previousDisplay);
+    //}
+    //else if (g_signal_connect(subtraction, "clicked", G_CALLBACK(displayDigits), NULL))
+    //{
+       // sbtr(currentDisplay, previousDisplay);
+    //}
+    //else if (g_signal_connect(division, "clicked", G_CALLBACK(displayDigits), NULL))
+    //{
+        //dvs(currentDisplay, previousDisplay);
+    //}
+    //else if (g_signal_connect(multiplication, "clicked", G_CALLBACK(displayDigits), NULL))
+    //{
+        //mltpl(currentDisplay, previousDisplay);
+    //}
     gtk_window_present(GTK_WINDOW(window));
 }

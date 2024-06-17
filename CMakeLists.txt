@@ -20,6 +20,8 @@ link_directories(${GTK_LIBRARY_DIRS})
 add_executable(C_Calculator main.c
         appStructure.c
         appStructure.h
+        calculatorOperations.c
+        calculatorOperations.h
 )
 
 # Link GTK libraries
